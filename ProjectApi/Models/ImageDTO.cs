@@ -2,7 +2,7 @@ namespace ProjectApi.Models;
 
 public class ImageDTO
 {
-  public int Id {get; set;}
+  public long Id {get; set;}
 
   public required string Title {get; set;}
 
@@ -10,4 +10,7 @@ public class ImageDTO
 
   public required string Url {get; set;}
 
+  public int LikeCount {get; set;}
+
+  public int DislikeCount {get; set;}
 }
