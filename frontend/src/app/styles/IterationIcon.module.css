@@ -1,0 +1,22 @@
+.icon {
+  @apply
+  flex
+  items-center
+  justify-center
+  rounded-full
+  cursor-pointer
+  p-1
+  w-[50px]
+  h-[50px]
+  text-gray-300
+}
+
+.icon.favourite {
+  @apply
+  bg-indigo-600
+}
+
+.icon.cancel {
+  @apply
+  bg-rose-600
+}
