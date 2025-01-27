@@ -1,0 +1,95 @@
+# Visual Studio files
+.vs/
+.vscode/
+.idea/
+
+# Build and Publish outputs
+bin/
+obj/
+out/
+*.dll
+*.exe
+*.app
+*.ipa
+*.dylib
+*.pdb
+*.cache
+*.ilk
+*.lib
+*.ndk
+*.so
+*.log
+*.props
+*.rsp
+*.nuget.g.targets
+*.nuget.targets
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Generated files
+*.generated.cs
+*.g.i.cs
+*.Designer.cs
+Generated_Code/
+
+# Package directories
+node_modules/
+packages/
+wwwroot/lib/
+
+# Logs and databases
+*.log
+*.tlog
+*.sql
+*.sqlite
+*.mdf
+*.ldf
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Deployment and build artifacts
+publish/
+app.publish/
+*.deploy
+*.publishsettings
+
+# Rider IDE files
+.idea/
+
+# Resharper files
+_ReSharper*/
+
+# JetBrains Rider IDE files
+.idea/
+
+# Dependency manager files
+project.lock.json
+project.fragment.lock.json
+global.json
+
+# Docker files
+*.container.config.json
+*.container.hash
+**/Dockerfile.*
+docker-compose.override.yml
+
+# Test and Coverage files
+*.testhost.*
+*.coverage
+TestResults/
+
+# Miscellaneous
+.env
+.env.local
+.env.*.local
+local.settings.json
+
+# Mono auto-generated files
+mono_crash.*
