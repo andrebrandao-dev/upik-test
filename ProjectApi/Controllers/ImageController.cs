@@ -44,7 +44,7 @@ public class ImageController : ControllerBase
   }
 
   [HttpPut("{id}")]
-  public async Task<IActionResult> LikeDislikeImage(long id, LikeRequest likeRequest)
+  public async Task<ActionResult<ImageDTO>> LikeDislikeImage(long id, LikeRequest likeRequest)
   {
     var image = await _context.Images.FindAsync(id); 
     if (image == null) 
@@ -60,8 +60,17 @@ public class ImageController : ControllerBase
     {
       image.DislikeCount++;
     }
-    await _context.SaveChangesAsync(); 
-    return NoContent();
+
+    await _context.SaveChangesAsync();
+    
+    var nextId = await NextImageId(id);
+    var nextImage = await _context.Images.FindAsync(nextId);
+    if(nextImage == null)
+    {
+      return NotFound();
+    }
+
+    return ImageToImageDto(nextImage);
   }
 
   [HttpPost("CreateImage")]
@@ -85,6 +94,15 @@ public class ImageController : ControllerBase
     await _context.SaveChangesAsync();
 
     return "Default Images Created";
+  }
+
+  public async Task<long> NextImageId (long id)
+  {
+    var nextId = id + 1;
+    if (await _context.Images.AnyAsync(i => i.Id == nextId)) {
+      return nextId;
+    }
+    return 1;
   }
 
   public static ImageDTO ImageToImageDto (Image image) => new ImageDTO

@@ -17,7 +17,6 @@ const Home = () => {
   const fetchImage = useCallback(async (id: number) => {
     try {
       const { data } = await apiClient.get(`/Image/${ id }`)
-      console.log(data)
       setImage(data)
     } catch (err) {
       setError(err instanceof Error ? err : new Error(String(err)));
@@ -32,17 +31,14 @@ const Home = () => {
     setImage(null)
     console.log(liked)
     try {
-      const res = await apiClient.put(`Image/${ id }`, {
+      const { data } = await apiClient.put(`Image/${ id }`, {
         liked
       })
 
-      console.log(res);
-
+      setImage(data)
     } catch (err) {
       setError(err instanceof Error ? err : new Error(String(err)));
     }
-
-    fetchImage(2)
   }
   
   if(error) {
