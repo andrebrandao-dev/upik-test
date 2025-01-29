@@ -4,7 +4,7 @@ import { Unbounded } from "next/font/google";
 import apiClient from "./api";
 import Image from "next/image";
 import ImageView from "./components/ImageView";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ImageType } from '@/app/types/imagetype'
 
 const unbounded = Unbounded({ subsets: ['latin'] })
@@ -14,18 +14,36 @@ const Home = () => {
   const [image, setImage] = useState<ImageType | null>(null);
   const [error, setError] = useState<Error | null>(null);
 
+  const fetchImage = useCallback(async (id: number) => {
+    try {
+      const { data } = await apiClient.get(`/Image/${ id }`)
+      console.log(data)
+      setImage(data)
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error(String(err)));
+    }
+  }, [])
+
   useEffect(() => {
-    const fetchImage = async () => {
-      try {
-        const { data } = await apiClient.get('/Image/1')
-        setImage(data)
-      } catch (err) {
-        setError(err instanceof Error ? err : new Error(String(err)));
-      }
+    fetchImage(1);
+  }, [fetchImage]);
+
+  const handleInteraction = async (liked: boolean, id: number) => {
+    setImage(null)
+    console.log(liked)
+    try {
+      const res = await apiClient.put(`Image/${ id }`, {
+        liked
+      })
+
+      console.log(res);
+
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error(String(err)));
     }
 
-    fetchImage();
-  }, []);
+    fetchImage(2)
+  }
   
   if(error) {
     return (
@@ -34,6 +52,7 @@ const Home = () => {
       </div>
     )
   }
+
   return (
     <div className={ unbounded.className }>
       <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-8">
@@ -48,7 +67,7 @@ const Home = () => {
         {
           image && (
             <main className="flex flex-col row-start-2 gap-4 items-center sm:items-start">
-              <ImageView image={ image } />
+              <ImageView image={ image } onInteraction={handleInteraction} />
             </main>
           )
         }

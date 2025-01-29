@@ -44,7 +44,7 @@ public class ImageController : ControllerBase
   }
 
   [HttpPut("{id}")]
-  public async Task<IActionResult> LikeDislikeImage(long id, bool liked)
+  public async Task<IActionResult> LikeDislikeImage(long id, LikeRequest likeRequest)
   {
     var image = await _context.Images.FindAsync(id); 
     if (image == null) 
@@ -52,7 +52,7 @@ public class ImageController : ControllerBase
       return NotFound(); 
     }
 
-    if(liked)
+    if(likeRequest.Liked)
     {
       image.LikeCount++;
     }
@@ -96,4 +96,5 @@ public class ImageController : ControllerBase
     LikeCount = image.LikeCount,
     DislikeCount = image.DislikeCount
   };
+
 }

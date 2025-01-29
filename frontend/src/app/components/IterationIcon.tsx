@@ -12,7 +12,7 @@ const iconMap = {
 
 interface IterationIconProps {
   icon: IconType,
-  onClick?: (icon: string) => void;
+  onClick?: (liked: boolean) => void;
 }
 
 type IconType = 'favourite' | 'cancel';
@@ -22,7 +22,7 @@ const IterationIcon:React.FC<IterationIconProps> = ({icon, onClick}) => {
 
   const handleEmitClick = () => {
     if(onClick) {
-      onClick(icon);
+      onClick(icon === 'favourite');
     }
   }
 
