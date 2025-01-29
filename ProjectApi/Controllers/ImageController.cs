@@ -86,11 +86,11 @@ public class ImageController : ControllerBase
   [HttpPost("CreateDefaultImages")]
   public async Task<ActionResult<string>> CreateDefaultImages()
   {
-    _context.Images.Add(new Image { Id = 1, Title = "Primeira Imagem", Description = "Lorem ipsum dolor sit amet", Url = "https://placehold.co/600x400.png" });
-    _context.Images.Add(new Image { Id = 2, Title = "Segunda Imagem", Description = "Lorem ipsum dolor sit amet", Url = "https://placehold.co/600x400.png" });
-    _context.Images.Add(new Image { Id = 3, Title = "Terceira Imagem", Description = "Lorem ipsum dolor sit amet", Url = "https://placehold.co/600x400.png" });
-    _context.Images.Add(new Image { Id = 4, Title = "Quarta Imagem", Description = "Lorem ipsum dolor sit amet", Url = "https://placehold.co/600x400.png" });
-    _context.Images.Add(new Image { Id = 5, Title = "Quinta Imagem", Description = "Lorem ipsum dolor sit amet", Url = "https://placehold.co/600x400.png" });
+    _context.Images.Add(new Image { Id = 1, Title = "Imagem Cinza", Description = "Lorem ipsum dolor sit amet", Url = "https://placehold.co/600x400/232523/FFF.png" });
+    _context.Images.Add(new Image { Id = 2, Title = "Imagem Roxa", Description = "Lorem ipsum dolor sit amet", Url = "https://placehold.co/600x400/744086/FFF.png" });
+    _context.Images.Add(new Image { Id = 3, Title = "Imagem Amarela", Description = "Lorem ipsum dolor sit amet", Url = "https://placehold.co/600x400/F9CC3C/744086.png" });
+    _context.Images.Add(new Image { Id = 4, Title = "Imagem Laranja", Description = "Lorem ipsum dolor sit amet", Url = "https://placehold.co/600x400/E2604C/FFF.png" });
+    _context.Images.Add(new Image { Id = 5, Title = "Imagem Verde", Description = "Lorem ipsum dolor sit amet", Url = "https://placehold.co/600x400/155E4B/FFF.png" });
     await _context.SaveChangesAsync();
 
     return "Default Images Created";
